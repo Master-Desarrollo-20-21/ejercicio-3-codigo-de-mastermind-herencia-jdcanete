@@ -1,0 +1,53 @@
+@startuml
+Mastermind *--> Game
+
+class Mastermind {
+    + play() : void
+    - resume() : boolean
+}
+
+class Game {
+    + play() : void
+}
+
+Game *--> "1..10" Attemp
+Game *--> SecretCombination
+
+Attemp *--> ProposedCombination
+Attemp o--> SecretCombination
+
+SecretCombination --> "4" Color
+ProposedCombination --> "4" Color
+
+Combination <|-- SecretCombination
+Combination <|-- ProposedCombination
+
+class Attemp {
+    + propose() : voii
+    + isGuessed() : boolean
+    + show() : void
+}
+
+class Combination {
+    + show() : void
+}
+
+class ProposedCombination {
+    + obtain() : void
+}
+
+class SecretCombination {
+    + colorMatch(ProposerCombination) : int
+    + colorAndPositionMatch(ProposedCombination) : int
+}
+
+enum Color {
+    RED,
+    GREEN,
+    BLUE,
+    YELLOW,
+    PINK,
+    BLACK,
+    WHITE
+}
+@enduml
